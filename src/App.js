@@ -1,7 +1,19 @@
+import { useState } from "react";
 import "./App.css";
 
 // 부모 컴포넌트
 function App() {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+
+  const handleInputChange = (e) =>{
+    console.log(e.target.value);
+    setNewTask(e.target.value);
+    // useState는 비동기로 처리되기 때문에 이전값이 출력
+    // console.log(newTask); 
+  }
+
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -12,6 +24,12 @@ function App() {
               type="text"
               placeholder="할 일을 입력하세요"
               className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              /*
+                1. 입력필드의 값과 리액트 상태를 동기화
+                2. 추가버튼 클릭시 입력필드초기화 setNewTask('')
+              */
+              value={newTask}
+              onChange={handleInputChange}
             />
             <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600">
               추가
