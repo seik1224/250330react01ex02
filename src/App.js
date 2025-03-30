@@ -14,10 +14,14 @@ function App() {
   }
 
   const handleAddTask = () => {
+    /* 
     const copyTasks = [...tasks];
     copyTasks.push(newTask);
     setTasks(copyTasks);
+    */
+    setTasks([...tasks, newTask]);
     setNewTask('');
+    console.log(tasks)
   }
 
   return (
