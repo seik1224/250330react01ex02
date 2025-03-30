@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { useEffect } from "react";
 
 // 부모 컴포넌트
 function App() {
@@ -21,8 +22,11 @@ function App() {
     */
     setTasks([...tasks, newTask]);
     setNewTask('');
-    console.log(tasks)
   }
+
+  useEffect(()=>{
+    console.log(tasks)
+  }, [tasks])
 
   return (
     <>
@@ -47,10 +51,15 @@ function App() {
           </div>
           <ul>
             {/* li는 따로 TodoItem이라는 자식 컴포넌트를 만들어서 관리해주세요. */}
-            <li className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-              <span>여기에 입력한 값을 넣어주세요</span>
-              <button className="text-red-500 hover:text-red-700">삭제</button>
-            </li>
+            
+            {
+              tasks.map((v, i)=>(
+                <li key={i} className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
+                  <span>{v}</span>
+                  <button className="text-red-500 hover:text-red-700">삭제</button>
+                </li>
+              ))
+            }
           </ul>
         </div>
       </div>
