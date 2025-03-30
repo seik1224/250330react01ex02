@@ -13,6 +13,12 @@ function App() {
     // console.log(newTask); 
   }
 
+  const handleAddTask = () => {
+    const copyTasks = [...tasks];
+    copyTasks.push(newTask);
+    setTasks(copyTasks);
+    setNewTask('');
+  }
 
   return (
     <>
@@ -31,7 +37,7 @@ function App() {
               value={newTask}
               onChange={handleInputChange}
             />
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600">
+            <button onClick={handleAddTask} className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600">
               추가
             </button>
           </div>
