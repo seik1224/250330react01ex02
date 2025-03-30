@@ -28,6 +28,15 @@ function App() {
     console.log(tasks)
   }, [tasks])
 
+  const handleRemoveTask = (index) => {
+    const confirm = window.confirm('정말로 지우시겠습니까?');
+    if(confirm) {
+      const copyTasks = [...tasks];
+      copyTasks.splice(index, 1);
+      setTasks(copyTasks);
+    }
+  }
+
   return (
     <>
       <div className="min-h-screen bg-gray-100 flex items-center justify-center">
@@ -51,12 +60,12 @@ function App() {
           </div>
           <ul>
             {/* li는 따로 TodoItem이라는 자식 컴포넌트를 만들어서 관리해주세요. */}
-            
+
             {
               tasks.map((v, i)=>(
                 <li key={i} className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
                   <span>{v}</span>
-                  <button className="text-red-500 hover:text-red-700">삭제</button>
+                  <button onClick={() => handleRemoveTask(i)} className="text-red-500 hover:text-red-700">삭제</button>
                 </li>
               ))
             }
