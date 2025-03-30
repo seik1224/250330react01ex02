@@ -63,10 +63,7 @@ function App() {
 
             {
               tasks.map((v, i)=>(
-                <li key={i} className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
-                  <span>{v}</span>
-                  <button onClick={() => handleRemoveTask(i)} className="text-red-500 hover:text-red-700">삭제</button>
-                </li>
+                <TodoItem key={v} task={v} handleRemoveTask={handleRemoveTask} i={i} />
               ))
             }
           </ul>
@@ -77,6 +74,23 @@ function App() {
 }
 
 // 자식 컴포넌트
-function TodoItem() {}
+// function TodoItem(props) {
+//   console.log('props:', props);
+//   return (
+//     <li className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
+//       <span>{props.task}</span>
+//       <button onClick={()=>props.handleRemoveTask(props.i)} className="text-red-500 hover:text-red-700">삭제</button>
+//     </li>
+//   )
+// }
+
+function TodoItem({task, handleRemoveTask, i}) {
+  return (
+    <li className="bg-white shadow-md rounded-lg px-4 py-2 mb-2 flex justify-between items-center cursor-pointer hover:bg-gray-100">
+      <span>{task}</span>
+      <button onClick={()=>handleRemoveTask(i)} className="text-red-500 hover:text-red-700">삭제</button>
+    </li>
+  )
+}
 
 export default App;
